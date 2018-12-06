@@ -9,7 +9,7 @@
 * ng help
 * ng test
 * ng e2e
-
+* ng generate component heroes
 
 #過往指令
 * npm list --depth=0
