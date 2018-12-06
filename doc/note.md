@@ -16,3 +16,4 @@
 * npm view angular
 * npm view angular version
 * npm run build 等同 => ng build
+* npm install => windows下從github抓下來, 下此指令,產生node_modules
