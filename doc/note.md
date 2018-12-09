@@ -26,7 +26,7 @@
 * npm uninstall {套件名稱} ==> 移除套件
 
 #Other
-(funciton)
+(function)
 (input) 
 (click) => bind-click
 (change)
@@ -38,9 +38,9 @@ routerLink = 'abc'
 ngIf
 
 #框架
-workspace 
--> project(application) , web app or mobile app 
--> module 
--> component
+* workspace 
+*   project(application) , ex, web app or mobile app 
+*     module 
+*       component
 
 
