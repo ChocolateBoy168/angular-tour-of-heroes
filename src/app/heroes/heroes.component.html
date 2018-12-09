@@ -5,5 +5,9 @@
 
 
 <label>name:
+  <!--
+    [(ngModel)] is Angular's two-way data binding syntax.
+    It belongs to the optional FormsModule and you must opt-in to using it.
+  -->
   <input [(ngModel)]="hero.name" placeholder="name">
 </label>
