@@ -10,11 +10,13 @@
 * ng test
 * ng e2e
 * ng generate component heroes
+* ng generate component hero-detail
 * ng generate --help
 * ng generate component --help
 * ng build --help
 * ng build default(app)
 * ng build {projectName}
+
 
 #過往指令
 * npm list --depth=0
