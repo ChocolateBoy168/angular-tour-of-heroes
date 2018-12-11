@@ -38,6 +38,8 @@ routerLink = 'abc'
 [] = 運算式
 *ngFor => * (exist or not exist)
 ngIf
+Property binding ( [property] ) [https://angular.io/guide/template-syntax#property-binding--property-]
+
 
 #框架
 * workspace 
