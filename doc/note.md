@@ -16,6 +16,8 @@
 * ng build --help
 * ng build default(app)
 * ng build {projectName}
+* ng generate service hero
+
 
 
 #過往指令
@@ -26,6 +28,8 @@
 * npm install or npm i=> windows下從github抓下來, 下此指令,產生node_modules
 * npm info {套件名稱} version
 * npm uninstall {套件名稱} ==> 移除套件
+* npm install -g npm ==> 更新npm
+
 
 #Other
 (function)
@@ -48,3 +52,8 @@ Property binding ( [property] ) [https://angular.io/guide/template-syntax#proper
 *       component
 
 
+# 
+base
+https://angular.io/guide/deployment#the-base-tag
+
+environment
