@@ -36,8 +36,23 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
-    //this.heroes = this.heroService.getHeroes(); // ==>  service / getHeroes():Hero[]{ return HEROES;}
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes); // ==>  service / getHeroes():Observable<Hero[]>{return of(HEROES);}
+    /**
+     * getHeroes():Hero[]{ return HEROES;}
+     * This will not work in a real app.
+     * You're getting away with it now because the service currently returns mock heroes.
+     * But soon the app will fetch heroes from a remote server, which is an inherently asynchronous operation.
+     */
+    //this.heroes = this.heroService.getHeroes();
+
+    /**
+     * getHeroes():Observable<Hero[]>{return of(HEROES);}
+     * HeroService.getHeroes() must have an asynchronous signature of some kind.
+     * It can take a callback. It could return a Promise. It could return an Observable.
+     * HttpClient.get() returns an Observable.
+     */
+    this.heroService.getHeroes().subscribe(
+      heroes => this.heroes = heroes
+    );
   }
 
 }

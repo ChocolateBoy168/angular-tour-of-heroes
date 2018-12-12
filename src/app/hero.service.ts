@@ -15,6 +15,7 @@ export class HeroService {
   }*/
 
   getHeroes():Observable<Hero[]>{
+    //of(HEROES) returns an Observable<Hero[]> that emits a single value, the array of mock heroes.
     return of(HEROES);
   }
 }
