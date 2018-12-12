@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Hero} from '../hero';
-//import {HEROES} from "../mock-heroes";
-import {HeroService} from "../hero.service";
+// import {HEROES} from "../mock-heroes";
+import {HeroService} from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -10,25 +10,25 @@ import {HeroService} from "../hero.service";
 })
 export class HeroesComponent implements OnInit {
 
+  // Add a private heroService parameter of type HeroService to the constructor.
+  constructor(private heroService: HeroService) {
+  }
+
   hero: Hero = {
     id: 1,
     name: 'Windstorm'
   };
 
-  //heroes = HEROES;
+  // heroes = HEROES;
   heroes: Hero[];
 
-  //Add a private heroService parameter of type HeroService to the constructor.
-  constructor(private heroService: HeroService) {
-  }
+  selectedHero: Hero;
 
   ngOnInit() {
     this.getHeroes();
   }
 
-  selectedHero: Hero;
-
-  //selectedHero  = HEROES[0]
+  // selectedHero  = HEROES[0]
 
   onSelect(hero: Hero): void {
     console.log(hero);
@@ -42,7 +42,7 @@ export class HeroesComponent implements OnInit {
      * You're getting away with it now because the service currently returns mock heroes.
      * But soon the app will fetch heroes from a remote server, which is an inherently asynchronous operation.
      */
-    //this.heroes = this.heroService.getHeroes();
+    // this.heroes = this.heroService.getHeroes();
 
     /**
      * getHeroes():Observable<Hero[]>{return of(HEROES);}
