@@ -10,6 +10,9 @@ import {HeroService} from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
 
+  /**
+   * dddd
+   */
   // Add a private heroService parameter of type HeroService to the constructor.
   constructor(private heroService: HeroService) {
   }
