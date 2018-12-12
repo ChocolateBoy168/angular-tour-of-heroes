@@ -26,11 +26,22 @@
     3. [class.some-css-class]="some-condition"
     
   -->
-  <li *ngFor="let hero of heroes"
+  <!--<li *ngFor="let hero of heroes"
       [class.selected]="hero===selectedHero"
       (click)="onSelect(hero)">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>-->
+  
+  <!--
+    Strip the <li> back to just its *ngFor, wrap the badge and name in an anchor element (<a>),
+    and add a routerLink attribute to the anchor that is the same as in the dashboard template
+  -->
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
   </li>
+  
 </ul>
 
 <!--
