@@ -6,13 +6,15 @@ import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
 import {AppComponent} from './app.component';
 import {HeroesComponent} from './heroes/heroes.component';
 import {HeroDetailComponent} from './hero-detail/hero-detail.component';
+import { MessagesComponent } from './messages/messages.component';
 
 /*The most important @NgModule decorator annotates the top-level AppModule class.*/
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

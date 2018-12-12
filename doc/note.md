@@ -17,6 +17,8 @@
 * ng build default(app)
 * ng build {projectName}
 * ng generate service hero
+* ng generate component messages
+* ng generate service message
 
 
 
