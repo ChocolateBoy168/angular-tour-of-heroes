@@ -1,5 +1,15 @@
 <!--The double curly braces are Angular's interpolation binding syntax.-->
 
 <h1>{{title}}</h1>
-<app-heroes></app-heroes>
+
+<!--<app-heroes></app-heroes>-->
+
+<nav>
+  <a routerLink="/heroes">Heroes</a>
+</nav>
+<!--
+The RouterOutlet is one of the router directives that became available to the AppComponent
+because AppModule imports AppRoutingModule which exported RouterModule.
+-->
+<router-outlet></router-outlet>
 <app-messages></app-messages>
