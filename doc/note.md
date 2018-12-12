@@ -19,6 +19,8 @@
 * ng generate service hero
 * ng generate component messages
 * ng generate service message
+* ng generate module app-routing --flat --module=app
+* ng generate module --help
 
 
 
