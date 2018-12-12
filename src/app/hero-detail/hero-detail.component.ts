@@ -38,4 +38,12 @@ export class HeroDetailComponent implements OnInit {
       hero => this.hero = hero
     )
   }
+
+  /**
+   * By clicking the browser's back button, you can go back to the hero list or dashboard view,
+   * depending upon which sent you to the detail view
+   */
+  goBack() {
+    this.location.back();
+  }
 }

@@ -1,19 +1,19 @@
-<h2>{{hero.name}} Details</h2>
+<h2>{{myHero.name}} Details</h2>
 
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<h2>{{myHero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{myHero.id}}</div>
+<div><span>name: </span>{{myHero.name}}</div>
 <label>name:
   <!--
     [(ngModel)] is Angular's two-way data binding syntax.
     It belongs to the optional FormsModule and you must opt-in to using it.
   -->
-  <input [(ngModel)]="hero.name" placeholder="name">
+  <input [(ngModel)]="myHero.name" placeholder="name">
 </label>
 
 
 
-<h2>My Heroes</h2>
+<h2>Heroes</h2>
 <ul class="heroes">
   <!--
     1.The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list.
