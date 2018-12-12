@@ -21,7 +21,8 @@
 * ng generate service message
 * ng generate module app-routing --flat --module=app
 * ng generate module --help
-
+* ng generate service hero
+* ng generate component dashboard
 
 
 #過往指令
