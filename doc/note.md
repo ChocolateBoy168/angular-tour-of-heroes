@@ -23,6 +23,7 @@
 * ng generate module --help
 * ng generate service hero
 * ng generate component dashboard
+* npm install angular-in-memory-web-api --save
 
 
 #過往指令
