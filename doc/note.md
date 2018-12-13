@@ -24,7 +24,7 @@
 * ng generate service hero
 * ng generate component dashboard
 * npm install angular-in-memory-web-api --save
-
+* ng generate service MyInMemoryData
 
 #過往指令
 * npm list --depth=0
