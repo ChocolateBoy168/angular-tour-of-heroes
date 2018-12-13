@@ -1,19 +1,19 @@
-<h2>{{hero.name}} Details</h2>
+<h2>{{myHero.name}} Details</h2>
 
-<h2>{{hero.name | uppercase}} Details</h2>
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
+<h2>{{myHero.name | uppercase}} Details</h2>
+<div><span>id: </span>{{myHero.id}}</div>
+<div><span>name: </span>{{myHero.name}}</div>
 <label>name:
   <!--
     [(ngModel)] is Angular's two-way data binding syntax.
     It belongs to the optional FormsModule and you must opt-in to using it.
   -->
-  <input [(ngModel)]="hero.name" placeholder="name">
+  <input [(ngModel)]="myHero.name" placeholder="name">
 </label>
 
 
 
-<h2>My Heroes</h2>
+<h2>Heroes</h2>
 <ul class="heroes">
   <!--
     1.The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list.
@@ -26,11 +26,22 @@
     3. [class.some-css-class]="some-condition"
     
   -->
-  <li *ngFor="let hero of heroes"
+  <!--<li *ngFor="let hero of heroes"
       [class.selected]="hero===selectedHero"
       (click)="onSelect(hero)">
     <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>-->
+  
+  <!--
+    Strip the <li> back to just its *ngFor, wrap the badge and name in an anchor element (<a>),
+    and add a routerLink attribute to the anchor that is the same as in the dashboard template
+  -->
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </a>
   </li>
+  
 </ul>
 
 <!--
