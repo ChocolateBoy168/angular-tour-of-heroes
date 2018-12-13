@@ -6,8 +6,7 @@ import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
 // HttpClient is Angular's mechanism for communicating with a remote server over HTTP.
 import {HttpClientModule} from '@angular/common/http';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDbService} from 'angular-in-memory-web-api';
-
+import {MyInMemoryDataService} from './my-in-memory-data.service';
 
 import {AppComponent} from './app.component';
 import {HeroesComponent} from './heroes/heroes.component';
@@ -15,6 +14,7 @@ import {HeroDetailComponent} from './hero-detail/hero-detail.component';
 import {MessagesComponent} from './messages/messages.component';
 import {AppRoutingModule} from './app-routing.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
+
 
 /*The most important @NgModule decorator annotates the top-level AppModule class.*/
 @NgModule({
@@ -33,9 +33,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDbService, {
-      dataEncapsulation: false
-    })
+    HttpClientInMemoryWebApiModule.forRoot(
+      MyInMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,6 +25,9 @@
 * ng generate component dashboard
 * npm install angular-in-memory-web-api --save
 * ng generate service MyInMemoryData
+* npm install @angular/http  ==> 若不安裝會出現  Cannot find module '@angular/http'
+
+
 
 #過往指令
 * npm list --depth=0
