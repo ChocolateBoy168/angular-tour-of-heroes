@@ -3,18 +3,20 @@ import {Hero} from './hero';
 import {HEROES, MyHero} from './mock-heroes';
 import {Observable, of} from 'rxjs';
 import {MessageService} from './message.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroService {
 
+  private heroesUrl = 'api/heroes'; // URL to web api
+
   /**
    * This is a typical "service-in-service" scenario: you inject the MessageService into the HeroService
    * which is injected into the HeroesComponent
    */
-  constructor(private messageService: MessageService) {
-
+  constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
   /*getHeroes():Hero[]{
@@ -40,5 +42,10 @@ export class HeroService {
   getMyHero(): Observable<Hero> {
     this.messageService.add('HeroService: fetched my hero');
     return of(MyHero);
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(msg: string) {
+    this.messageService.add(`HeroService: ${msg}`);
   }
 }
