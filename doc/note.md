@@ -26,8 +26,10 @@
 * npm install angular-in-memory-web-api --save
 * ng generate service MyInMemoryData
 * npm install @angular/http  ==> 若不安裝會出現  Cannot find module '@angular/http'
+* npm install rimraf -g
 * 當未滿足package.json文件中指定的一個或多個模塊的依賴關係時，會引發UNMET PEER DEPENDENCY錯誤。 仔細檢查警告並使用正確版本的依賴關係更新package.json文件。
-  rm -rf node_modules/
+  (mac) => rm -rf node_modules/
+  (windows) => rimraf node_modules
   npm cache clean
   npm install
 

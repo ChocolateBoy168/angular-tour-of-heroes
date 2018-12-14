@@ -23,11 +23,18 @@ export class HeroService {
     return HEROES;
   }*/
 
-  getHeroes(): Observable<Hero[]> {
+  /*getHeroes(): Observable<Hero[]> {
     // of(HEROES) returns an Observable<Hero[]> that emits a single value, the array of mock heroes.
     this.messageService.add('HeroService: fetched heroes');
     return of(HEROES);
+  }*/
+
+  /** GET heroes from the server */
+  getHeroes(): Observable<Hero[]> {
+    return this.http.get<Hero[]>(this.heroesUrl);
+    //return of([]);
   }
+
 
   /**
    * Like getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable,
