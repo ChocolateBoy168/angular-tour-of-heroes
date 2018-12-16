@@ -69,7 +69,7 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id} , ${JSON.stringify(_)}`)),
+      tap(_ => this.log(`抓 hero id=${id} , ${JSON.stringify(_)}`)),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
@@ -88,8 +88,40 @@ export class HeroService {
    */
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`update hero id=${hero.id}`)),
+      tap(_ => this.log(`更正 hero id=${hero.id}`)),
       catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+  /**
+   * POST: add a new hero to the server
+   * HeroService.addHero() differs from updateHero in two ways.
+   * 1.it calls HttpClient.post() instead of put().
+   * 2.it expects the server to generates an id for the new hero,
+   *   which it returns in the Observable<Hero> to the caller.
+   *
+   */
+  addHero(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+      tap((h: Hero) => this.log(`新增 hero w/ id=${h.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    );
+  }
+
+  /**
+   * DELETE: delete the hero from the server
+   * 1. it calls HttpClient.delete.
+   * 2. the URL is the heroes resource URL plus the id of the hero to delete
+   * 3. you don't send data as you did with put and post.
+   * 4. you still send the httpOptions.
+   * 5.小心 傳回是個null object todo 22222 應該是 http.delete 影響的
+   */
+  deleteHero(hero: Hero | number): Observable<Hero> {
+    const id = typeof hero === 'number' ? hero : hero.id;
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.delete<Hero>(url,httpOptions).pipe(
+      tap(_ => this.log(`刪掉 hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
     );
   }
 
@@ -116,6 +148,6 @@ export class HeroService {
 
   /** Log a HeroService message with the MessageService */
   private log(msg: string) {
-    this.messageService.add(`HeroService: ${msg}`);
+    this.messageService.add(`HeroService => ${msg}`);
   }
 }

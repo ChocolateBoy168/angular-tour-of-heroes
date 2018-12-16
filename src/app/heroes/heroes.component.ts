@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Hero} from '../hero';
 // import {HEROES} from "../mock-heroes";
 import {HeroService} from '../hero.service';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-heroes',
@@ -58,6 +59,41 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe(
       heroes => this.heroes = heroes
     );
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.heroService.addHero({name} as Hero).subscribe(h => {
+      this.heroes.push(h);
+    });
+  }
+
+
+  /**
+   * 1. heroService.delete(). It must subscribe anyway.
+   * 2. As a rule, an Observable does nothing until something subscribes!
+   *
+   */
+  delete(hero: Hero): void {
+    let me = this;
+    switch ("ok_0") {
+      case "ok_0"://delete before subscribe
+        me.heroes = me.heroes.filter(h2 => h2 != hero);
+        me.heroService.deleteHero(hero);//fail
+        //me.heroService.deleteHero(hero).subscribe();//success
+        break;
+      case "ok_1"://delete after subscribe
+        me.heroService.deleteHero(hero).subscribe(h => {
+          //me.heroes = me.heroes.filter(h2 => h2 !== h);//fail  because
+          me.heroes = me.heroes.filter(h2 => h2 !== hero);//success
+        });
+        break;
+    }
+
+
   }
 
 }
