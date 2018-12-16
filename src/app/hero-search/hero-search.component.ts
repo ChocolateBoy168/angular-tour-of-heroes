@@ -33,8 +33,15 @@ export class HeroSearchComponent implements OnInit {
      * 1.Chaining RxJS operators
      * 2.Every time the user types in the textbox, the binding calls search() with the textbox value, a "search term".
      *   The searchTerms becomes an Observable emitting a steady stream of search terms.
-     * 3.
+     * 3.Remember that the component class does not subscribe to the heroes$ observable. That's the job of the AsyncPipe in the template.
      *
+     * ******switchMap 厲害的地方 可以保留最後一次request的結果資料,並設棄掉之前request的結果資料*******
+     * 1.With the switchMap operator, every qualifying key event can trigger an HttpClient.get() method call.
+     *   Even with a 300ms pause between requests, you could have multiple HTTP requests in flight and they may not return in the order sent.
+     * 2.switchMap() preserves the original request order while returning only the observable from the most recent HTTP method call.
+     *   Results from prior calls are canceled and discarded.
+     * 3.Note that canceling a previous searchHeroes() Observable doesn't actually abort a pending HTTP request.
+     *   Unwanted results are simply discarded before they reach your application code.
      */
     this.heroes$ = this.searchTerms.pipe(
       /**
