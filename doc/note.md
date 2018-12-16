@@ -38,6 +38,8 @@
   (windows) => rimraf node_modules
   npm cache clean
   npm install
+* ng generate component hero-search
+
 
 
 #過往指令

@@ -26,6 +26,11 @@ export class HeroService {
   constructor(private http: HttpClient, private messageService: MessageService) {
   }
 
+  getMyHero(): Observable<Hero> {
+    this.messageService.add('HeroService: fetched my hero');
+    return of(MyHero);
+  }
+
   /*getHeroes():Hero[]{
     return HEROES;
   }*/
@@ -74,9 +79,17 @@ export class HeroService {
     );
   }
 
-  getMyHero(): Observable<Hero> {
-    this.messageService.add('HeroService: fetched my hero');
-    return of(MyHero);
+  /* GET heroes whose name contains search term */
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    //The method returns immediately with an empty array if there is no search term.
+    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+      tap(_ => this.log(`找到heroes matching ${term}`)),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
   }
 
   /**
@@ -119,11 +132,12 @@ export class HeroService {
   deleteHero(hero: Hero | number): Observable<Hero> {
     const id = typeof hero === 'number' ? hero : hero.id;
     const url = `${this.heroesUrl}/${id}`;
-    return this.http.delete<Hero>(url,httpOptions).pipe(
+    return this.http.delete<Hero>(url, httpOptions).pipe(
       tap(_ => this.log(`刪掉 hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
+
 
   /**
    * Handle Http operation that failed.
