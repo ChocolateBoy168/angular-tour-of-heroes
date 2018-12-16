@@ -37,13 +37,24 @@ export class HeroSearchComponent implements OnInit {
      *
      */
     this.heroes$ = this.searchTerms.pipe(
-      //wait 300ms after each keystroke before considering the term
+      /**
+       *1.wait 300ms after each keystroke before considering the term
+       *2.debounceTime(300) waits until the flow of new string events pauses for 300 milliseconds
+       *  before passing along the latest string. You'll never make requests more frequently than 300ms.
+       */
       debounceTime(300),
 
-      //ignore new term if same as previous term
+      /**
+       * 1.ignore new term if same as previous term
+       * 2.distinctUntilChanged() ensures that a request is sent only if the filter text changed.
+       */
       distinctUntilChanged(),
 
-      //switch to new search observable each time the term changes
+      /**
+       * 1.switch to new search observable each time the term changes
+       * 2.switchMap() calls the search service for each search term that makes it through debounce and distinctUntilChanged.
+       *   It cancels and discards previous search observables, returning only the latest search service observable.
+       */
       switchMap((term: string) => this.heroService.searchHeroes(term))
     );
   }
