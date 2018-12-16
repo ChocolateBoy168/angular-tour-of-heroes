@@ -34,9 +34,8 @@ export class HeroDetailComponent implements OnInit {
      *
      */
     const id = +this.route.snapshot.paramMap.get('id');
-    //switch ("with404") {
-    switch ("no404") {
-    //switch ("no404_2") {
+    switch ("with404") {
+    //switch ("no404") {
       case "with404":
         this.heroService.getHero(id).subscribe(
           hero => this.hero = hero

@@ -30,8 +30,11 @@ export class HeroSearchComponent implements OnInit {
   ngOnInit() {
 
     /**
-     * 1. Every time the user types in the textbox, the binding calls search() with the textbox value, a "search term".
+     * 1.Chaining RxJS operators
+     * 2.Every time the user types in the textbox, the binding calls search() with the textbox value, a "search term".
      *   The searchTerms becomes an Observable emitting a steady stream of search terms.
+     * 3.
+     *
      */
     this.heroes$ = this.searchTerms.pipe(
       //wait 300ms after each keystroke before considering the term
