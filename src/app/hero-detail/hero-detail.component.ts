@@ -34,9 +34,21 @@ export class HeroDetailComponent implements OnInit {
      *
      */
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.getHero(id).subscribe(
-      hero => this.hero = hero
-    )
+    //switch ("with404") {
+    switch ("no404") {
+    //switch ("no404_2") {
+      case "with404":
+        this.heroService.getHero(id).subscribe(
+          hero => this.hero = hero
+        )
+        break;
+      case "no404":
+        this.heroService.getHeroNo404(id).subscribe(
+          hero => this.hero = hero
+        )
+        break;
+    }
+
   }
 
   /**

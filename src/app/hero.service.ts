@@ -68,13 +68,30 @@ export class HeroService {
   }*/
 
   /**
-   * Most web APIs support a get by id request in the form :baseURL/:id.
-   * GET hero by id. Will 404 if id not found
+   * 1. Most web APIs support a get by id request in the form :baseURL/:id.
+   * 2. GET hero by id. Will 404 if id not found
    * */
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => this.log(`抓 hero id=${id} , ${JSON.stringify(_)}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
+  }
+
+  /**
+   * 1. Other APIs may bury the data that you want within an object.
+   *    You might have to dig that data out by processing the Observable result with the RxJS map operator.
+   * 2. GET hero by id. Return `undefined` when id not found
+   * */
+  getHeroNo404<Data>(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/?id=${id}`;//很重要 要加問號 , 不然一樣會404
+    return this.http.get<Hero[]>(url).pipe(
+      map(heroes => heroes[0]), // returns a {0|1} element array
+      tap(h => {
+        const outcome = h ? '抓到' : '沒抓到';
+        this.log(`${outcome} hero id=${id}}`);
+      }),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
