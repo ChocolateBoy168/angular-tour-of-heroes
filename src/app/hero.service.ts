@@ -3,8 +3,14 @@ import {Hero} from './hero';
 import {HEROES, MyHero} from './mock-heroes';
 import {Observable, of} from 'rxjs';
 import {MessageService} from './message.service';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {catchError, map, tap} from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +44,8 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(_ => this.log(`fetched heroes:${_}`)),
-        catchError(this.handleError('getHeroes', []))
+        tap(_ => this.log(`fetched heroes:${_.length}個`)),
+        catchError(this.handleError<Hero[]>('getHeroes', []))
       );
     // return of([]);
   }
@@ -49,15 +55,42 @@ export class HeroService {
    * Like getHeroes(), getHero() has an asynchronous signature. It returns a mock hero as an Observable,
    * using the RxJS of() function.
    */
-  getHero(id: number): Observable<Hero> {
+
+  /*getHero(id: number): Observable<Hero> {
     // TODO: send the message _after_ fetching the hero
     this.messageService.add(`HeroService: fetched hero id=${id}`);
     return of(HEROES.find(hero => hero.id === id));
+  }*/
+
+  /**
+   * Most web APIs support a get by id request in the form :baseURL/:id.
+   * GET hero by id. Will 404 if id not found
+   * */
+  getHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${id} , ${JSON.stringify(_)}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
   }
 
   getMyHero(): Observable<Hero> {
     this.messageService.add('HeroService: fetched my hero');
     return of(MyHero);
+  }
+
+  /**
+   * 1.The overall structure of the updateHero() method is similar to that of getHeroes(),
+   *   but it uses http.put() to persist the changed hero on the server.
+   * 2.The URL is unchanged. The heroes web API knows which hero to update by looking at the hero's id.
+   * 3.The heroes web API expects a special header in HTTP save requests.
+   *   That header is in the httpOptions constant defined in the HeroService.
+   */
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
+      tap(_ => this.log(`update hero id=${hero.id}`)),
+      catchError(this.handleError<any>('updateHero'))
+    );
   }
 
   /**
@@ -80,7 +113,6 @@ export class HeroService {
       return of(result as T);
     };
   }
-
 
   /** Log a HeroService message with the MessageService */
   private log(msg: string) {
