@@ -1,3 +1,9 @@
+#survey 
+(base)[https://angular.io/guide/deployment#the-base-tag]
+(深入探討 TypeScript 之 Interface)[https://oomusou.io/typescript/interface/#Class_Interface]
+(typeScript handbook)[https://www.typescriptlang.org/docs/handbook/basic-types.html]
+
+
 #About Angular 指令
 * [官網](https://angular.io/guide/quickstart)
 * npm install -g @angular/cli
@@ -62,12 +68,7 @@ Property binding ( [property] ) [https://angular.io/guide/template-syntax#proper
 #框架
 * workspace 
 *   project(application) , ex, web app or mobile app 
-*     module 
+*     module ()
 *       component
 
 
-# 
-base
-https://angular.io/guide/deployment#the-base-tag
-
-environment
