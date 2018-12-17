@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Hero} from '../hero';
 // import {HEROES} from "../mock-heroes";
 import {HeroService} from '../hero.service';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-heroes',
@@ -25,13 +25,13 @@ export class HeroesComponent implements OnInit {
   // heroes = HEROES;
   heroes: Hero[];
 
-  //selectedHero: Hero;
+  // selectedHero: Hero;
 
   ngOnInit() {
     this.getHeroes();
     this.heroService.getMyHero().subscribe(
       h => this.myHero = h
-    )
+    );
   }
 
   // selectedHero  = HEROES[0]
@@ -78,17 +78,17 @@ export class HeroesComponent implements OnInit {
    *
    */
   delete(hero: Hero): void {
-    let me = this;
-    switch ("ok_0") {
-      case "ok_0"://delete before subscribe
-        me.heroes = me.heroes.filter(h2 => h2 != hero);
-        me.heroService.deleteHero(hero);//fail
-        //me.heroService.deleteHero(hero).subscribe();//success
+    const me = this;
+    switch ('ok_0') {
+      case 'ok_0': // delete before subscribe
+        me.heroes = me.heroes.filter(h2 => h2 !== hero);
+        me.heroService.deleteHero(hero); // fail
+        // me.heroService.deleteHero(hero).subscribe();//success
         break;
-      case "ok_1"://delete after subscribe
+      case 'ok_1': // delete after subscribe
         me.heroService.deleteHero(hero).subscribe(h => {
-          //me.heroes = me.heroes.filter(h2 => h2 !== h);//fail  because
-          me.heroes = me.heroes.filter(h2 => h2 !== hero);//success
+          // me.heroes = me.heroes.filter(h2 => h2 !== h);//fail
+          me.heroes = me.heroes.filter(h2 => h2 !== hero); // success
         });
         break;
     }

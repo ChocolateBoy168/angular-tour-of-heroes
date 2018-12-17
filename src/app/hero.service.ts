@@ -85,7 +85,7 @@ export class HeroService {
    * 2. GET hero by id. Return `undefined` when id not found
    * */
   getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;//很重要 要加問號 , 不然一樣會404
+    const url = `${this.heroesUrl}/?id=${id}`; // 很重要 要加問號 , 不然一樣會404
     return this.http.get<Hero[]>(url).pipe(
       map(heroes => heroes[0]), // returns a {0|1} element array
       tap(h => {
@@ -102,7 +102,7 @@ export class HeroService {
       // if not search term, return empty hero array.
       return of([]);
     }
-    //The method returns immediately with an empty array if there is no search term.
+    // The method returns immediately with an empty array if there is no search term.
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap(_ => this.log(`找到heroes matching ${term}`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))

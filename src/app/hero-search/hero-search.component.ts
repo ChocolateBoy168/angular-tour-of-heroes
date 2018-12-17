@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable, Subject} from "rxjs";
-import {Hero} from "../hero";
-import {HeroService} from "../hero.service";
-import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
+import {Observable, Subject} from 'rxjs';
+import {Hero} from '../hero';
+import {HeroService} from '../hero.service';
+import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-hero-search',
@@ -11,8 +11,8 @@ import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
 })
 export class HeroSearchComponent implements OnInit {
 
-  private heroes$: Observable<Hero[]>;//Notice the declaration of heroes$ as an Observable
-  private searchTerms = new Subject<string>();//The searchTerms property is declared as an RxJS Subject.
+  private heroes$: Observable<Hero[]>; // Notice the declaration of heroes$ as an Observable
+  private searchTerms = new Subject<string>(); // The searchTerms property is declared as an RxJS Subject.
 
   constructor(private heroService: HeroService) {
   }
@@ -37,7 +37,8 @@ export class HeroSearchComponent implements OnInit {
      *
      * ******switchMap 厲害的地方 可以保留最後一次request的結果資料,並設棄掉之前request的結果資料*******
      * 1.With the switchMap operator, every qualifying key event can trigger an HttpClient.get() method call.
-     *   Even with a 300ms pause between requests, you could have multiple HTTP requests in flight and they may not return in the order sent.
+     *   Even with a 300ms pause between requests, you could have multiple HTTP requests in flight
+     *   and they may not return in the order sent.
      * 2.switchMap() preserves the original request order while returning only the observable from the most recent HTTP method call.
      *   Results from prior calls are canceled and discarded.
      * 3.Note that canceling a previous searchHeroes() Observable doesn't actually abort a pending HTTP request.

@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Location} from "@angular/common";
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 import {Hero} from '../hero';
-import {HeroService} from "../hero.service";
+import {HeroService} from '../hero.service';
 
 
 @Component({
@@ -22,7 +22,7 @@ export class HeroDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getHero()
+    this.getHero();
   }
 
   getHero(): void {
@@ -34,17 +34,17 @@ export class HeroDetailComponent implements OnInit {
      *
      */
     const id = +this.route.snapshot.paramMap.get('id');
-    switch ("with404") {
-    //switch ("no404") {
-      case "with404":
+    switch ('with404') {
+    // switch ("no404") {
+      case 'with404':
         this.heroService.getHero(id).subscribe(
           hero => this.hero = hero
-        )
+        );
         break;
-      case "no404":
+      case 'no404':
         this.heroService.getHeroNo404(id).subscribe(
           hero => this.hero = hero
-        )
+        );
         break;
     }
 
@@ -58,9 +58,9 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save():void{
+  save(): void {
     this.heroService.updateHero(this.hero).subscribe(
       () => this.goBack()
-    )
+    );
   }
 }
